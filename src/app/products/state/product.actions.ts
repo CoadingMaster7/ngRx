@@ -9,7 +9,10 @@ export enum ProductActionType {
     /* complex operation */
     LOAD = '[Load Products]Load Products',
     LOAD_SUCCESS = '[Products load success]Load success',
-    LOAD_FAIL = '[Products Load fail] Load Fail'
+    LOAD_FAIL = '[Products Load fail] Load Fail',
+    UPDATE_PRODUCT = '[Product] Update product',
+    UPDATE_PRODUCT_SUCCESS = '[Product] Update SuccessFull',
+    UPDATE_PRODUCT_FAIL = '[Product] Update failed',
 }
 export class ToggleProductCode implements Action {
     readonly type = ProductActionType.TOGGLE_PRODUCT_CODE;
@@ -41,9 +44,24 @@ export class LoadFail implements Action {
     // no payload so we can remove constructor
     constructor(public payload: string) { }
 }
+export class UpdateProduct implements Action {
+    readonly type = ProductActionType.UPDATE_PRODUCT;
+    // no payload so we can remove constructor
+    constructor(public payload: Product) { }
+}
+export class UpdateProductSuccess implements Action {
+    readonly type = ProductActionType.UPDATE_PRODUCT_SUCCESS;
+    // no payload so we can remove constructor
+    constructor(public payload: Product) { }
+}
+export class UpdateProductFail implements Action {
+    readonly type = ProductActionType.UPDATE_PRODUCT_FAIL;
+    // no payload so we can remove constructor
+    constructor(public payload: string) { }
+}
 
 
 
 
 export type ProductActions = ToggleProductCode | SetCurrentProduct | ClearCurrentProduct | InitializeCurrentProduct
-    | Load | LoadSuccess | LoadFail;
+    | Load | LoadSuccess | LoadFail | UpdateProduct | UpdateProductSuccess | UpdateProductFail;
