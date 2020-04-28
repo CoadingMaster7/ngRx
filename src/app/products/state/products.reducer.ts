@@ -1,12 +1,7 @@
-import * as fromRoot from './../../state/app.state';
+import { ProductActionType, ProductActions } from './product.actions';
 import { Product } from '../product';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ProductActions, ProductActionType, UpdateProductSuccess } from './product.actions';
 
-export interface State extends fromRoot.State {
-    products: ProductState;
-}
-
+/* State for this feature (Product) */
 export interface ProductState {
     showProductCode: boolean;
     currentProductId: number | null;
@@ -19,42 +14,6 @@ const initialState: ProductState = {
     products: [],
     error: ''
 };
-const getProsuctFeatureState = createFeatureSelector<ProductState>('products');
-export const getShowProductCode = createSelector(
-    getProsuctFeatureState,
-    state => state.showProductCode
-);
-
-export const getCurrentProductId = createSelector(
-    getProsuctFeatureState,
-    state => state.currentProductId
-);
-export const getCurrentProduct = createSelector(
-    getProsuctFeatureState,
-    getCurrentProductId,
-    (state, currentProductId) => {
-        if (currentProductId === 0) {
-            return {
-                id: 0,
-                productName: '',
-                productCode: 'new',
-                description: '',
-                starRating: 0
-            };
-        } else {
-            return currentProductId ? state.products.find(p => p.id === currentProductId) : null;
-        }
-    }
-);
-export const getProducts = createSelector(
-    getProsuctFeatureState,
-    state => state.products
-);
-export const getErrors = createSelector(
-    getProsuctFeatureState,
-    state => state.error
-);
-
 export function reducer(state = initialState, action: ProductActions): ProductState {
     // console.log('existing state', JSON.stringify(state));
     // console.log('payload', action.payload);

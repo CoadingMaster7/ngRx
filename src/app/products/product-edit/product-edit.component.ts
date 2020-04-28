@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Subscription } from 'rxjs';
-
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { GenericValidator } from '../../shared/generic-validator';
@@ -11,7 +9,7 @@ import { NumberValidators } from '../../shared/number.validator';
 /* NgRx */
 
 import { Store, select } from '@ngrx/store';
-import * as fromProduct from '../state/products.reducer';
+import * as fromProduct from '../state';
 import * as productActions from '../state/product.actions';
 
 @Component({
